@@ -1,0 +1,51 @@
+<div class="container">
+  <div class=" row col-md-9 col-md-offset-2">
+
+
+    <br><br>
+
+    <div class="row" *ngIf="isAdmin()">
+      <form #f="ngForm" (ngSubmit)="onAddNewRole(f.value)">
+        <div class="col-md-8">
+          <input type="text" placeholder="roleName" name="roleName" ngModel class="form-control">
+        </div>
+        <div class="col-md-4">
+          <button type="submit" class="btn  btn-primary  btn-block" [disabled]="!isAdmin()"> Add role</button>
+        </div>
+      </form>
+    </div>
+    <br><br>
+    <div>
+      <table class="table">
+        <thead>
+        <tr>
+          <th scope="col">ID</th>
+          <th scope="col">RoleName</th>
+          <th scope="cole"></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let r of roles">
+          <td>{{r.id}}</td>
+          <td>{{r.roleName}}</td>
+          <td>
+            <button
+              class="clickable btn btn-danger" [disabled]="!isAdmin()"
+              (click)="onDeleteRole(r.id)"
+
+            ><span
+              class="glyphicon glyphicon-trash"></span></button
+            >
+          </td>
+
+          <!-- <td><a class="clickable" (click)="onDeleteRole(r.id)">Delete</a></td>-->
+
+        </tr>
+        </tbody>
+      </table>
+    </div>
+
+
+  </div>
+</div>
+

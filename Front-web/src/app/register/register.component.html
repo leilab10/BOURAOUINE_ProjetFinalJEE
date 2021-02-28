@@ -1,0 +1,46 @@
+<div class="container">
+
+  <div class="alert alert-danger" *ngIf="new==0">
+    <strong> {{errorMsg}}</strong>
+  </div>
+  <div class="alert alert-danger" *ngIf="new==1">
+    <strong> vous etes enregister avec succès!!!!"</strong>
+  </div>
+
+  <div class=" row col-md-6 col-md-offset-3">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+
+
+        <p style="text-align: center;">
+          <img src="assets/img/user_84308.ico" width="150" height="150">
+        </p>
+      </div>
+      <div class="panel-body">
+        <form #f="ngForm" (ngSubmit)="OnRegister(f.value)">
+          <div class="form-group">
+            <label class="control-label">
+              Username
+            </label>
+            <input type="text" name="username" ngModel class="form-control">
+          </div>
+          <div class="form-group">
+            <label class="control-label">
+              Password
+            </label>
+            <input type=password name="password" ngModel class="form-control">
+          </div>
+          <div class="form-group">
+            <label class="control-label">
+              Confirmed Password
+            </label>
+            <input type=password name="confirmedPassword" ngModel class="form-control">
+          </div>
+          <button type="submit" class="btn  btn-primary  btn-block"> Add user</button>
+
+        </form>
+      </div>
+
+    </div>
+  </div>
+</div>

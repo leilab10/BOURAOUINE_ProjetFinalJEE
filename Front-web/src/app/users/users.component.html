@@ -1,0 +1,85 @@
+<div class="container">
+  <div class=" row col-md-9 col-md-offset-2">
+
+
+    <br><br>
+    <div class="row" *ngIf="isAdmin()">
+      <div class="col-md-2">
+        <label>Roles </label>
+      </div>
+      <div class="col-md-4">
+        <select class="custom-select" [(ngModel)]="roleName">
+          <option>Choose a role</option>
+          <option *ngFor="let r of roles" name="roleName">
+            {{r.roleName}}
+          </option>
+        </select>
+      </div>
+      <div class="col-md-4">
+        <button class="btn btn-primary ml-4" type="button" [disabled]="!roleUserForm.username"
+                (click)="onAddRoleToSelectedUser(roleName)">
+          AddRoleToSelectedUser
+        </button>
+      </div>
+
+    </div>
+    <br><br>
+    <div>
+
+      <table class="table">
+        <thead>
+        <tr>
+          <th scope="col">ID</th>
+          <th scope="col">UserName</th>
+          <th scope="col">IsActive</th>
+          <th scope="col">Roles</th>
+          <th scope="cole"></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let u of users">
+          <td>{{u.id}}</td>
+          <td>
+            <button class="btn btn-primary " (click)="onGetUsername(u.username)"
+                    [disabled]="!isAdmin()">{{u.username}}  </button>
+          </td>
+          <td>{{u.activated}}</td>
+          <td>
+            <div class="borderless">
+              <ul class="list-group" *ngFor="let r of u.appRoles">
+                <li class="list-group-item" style="border: none">
+
+                  <div class="row">
+                    <div class="col-md-4"> {{r.roleName}}</div>
+                    <div class="col-md-1">
+                      <button class="btn btn-danger ml-4" type="button" [disabled]="!isAdmin()"
+                              (click)="onRemoveRoleFromUser(r.roleName,u.username)">
+                        Remove Role
+                      </button>
+                    </div>
+                  </div>
+
+
+                </li>
+              </ul>
+            </div>
+          </td>
+
+
+          <td>
+            <button
+              class="clickable btn btn-danger" [disabled]="!isAdmin()"
+              (click)="onDeleteUser(u.id)"
+
+            ><span
+              class="glyphicon glyphicon-trash"></span></button
+            >
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+
+
+  </div>
+</div>
